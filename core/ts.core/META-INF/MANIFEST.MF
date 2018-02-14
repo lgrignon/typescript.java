@@ -7,8 +7,6 @@ Bundle-SymbolicName: ts.core
 Bundle-Version: 1.4.0.qualifier
 Bundle-Activator: ts.internal.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: com.eclipsesource.json;version="0.9.4",
- org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: ts,
  ts.client,
@@ -38,6 +36,3 @@ Export-Package: ts,
  ts.resources,
  ts.resources.jsonconfig,
  ts.utils
-Require-Bundle: com.google.gson;bundle-version="2.1.0",
- org.tukaani.xz;resolution:=optional
-
