@@ -64,9 +64,28 @@ public interface ITypeScriptServiceClient {
 	 */
 	void openFile(String fileName, String content, ScriptKindName scriptKindName) throws TypeScriptException;
 
-	void openExternalProject(String projectFileName, List<ExternalFile> rootFiles,
-			CompilerOptions options) throws TypeScriptException;
-	
+	/**
+	 * Open an external project based on a project name and its files with explicit
+	 * options
+	 * 
+	 * @param projectFileName
+	 * @param rootFiles
+	 * @param options
+	 * @throws TypeScriptException
+	 */
+	void openExternalProject(String projectFileName, List<ExternalFile> rootFiles, CompilerOptions options)
+			throws TypeScriptException;
+
+	/**
+	 * Closes a previously opened external project
+	 * 
+	 * @see #openExternalProject(String, List, CompilerOptions)
+	 * 
+	 * @param projectFileName
+	 * @throws TypeScriptException
+	 */
+	void closeExternalProject(String projectFileName) throws TypeScriptException;
+
 	/**
 	 * Close the given file name.
 	 * 

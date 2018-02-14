@@ -59,7 +59,8 @@ public enum CommandNames implements ISupportable {
 	GetApplicableRefactors("getApplicableRefactors", "2.4.0"),
     GetEditsForRefactor("getEditsForRefactor", "2.4.0"),
 	
-	OpenExternalProject("openExternalProject");
+    OpenExternalProject("openExternalProject"),
+	CloseExternalProject("closeExternalProject");
     
 	private final String name;
 	private final String sinceVersion;

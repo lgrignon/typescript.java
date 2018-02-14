@@ -55,6 +55,7 @@ import ts.cmd.tsc.CompilerOptions;
 import ts.internal.FileTempHelper;
 import ts.internal.SequenceHelper;
 import ts.internal.client.protocol.ChangeRequest;
+import ts.internal.client.protocol.CloseExternalProjectRequest;
 import ts.internal.client.protocol.CloseRequest;
 import ts.internal.client.protocol.CodeFixRequest;
 import ts.internal.client.protocol.CompileOnSaveAffectedFileListRequest;
@@ -325,6 +326,12 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 	public void openExternalProject(String projectFileName, List<ExternalFile> rootFiles, CompilerOptions options)
 			throws TypeScriptException {
 		execute(new OpenExternalProjectRequest(projectFileName, rootFiles, options), false);
+	}
+	
+	@Override
+	public void closeExternalProject(String projectFileName)
+			throws TypeScriptException {
+		execute(new CloseExternalProjectRequest(projectFileName), false);
 	}
 
 	@Override
