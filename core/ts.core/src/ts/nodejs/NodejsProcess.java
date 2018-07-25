@@ -228,6 +228,10 @@ public class NodejsProcess extends AbstractNodejsProcess {
 	 * Kill the process.
 	 */
 	public void kill() {
+		System.out.println("kill nodejs process: projectDir=" + getProjectDir() + " nodejsFile=" + nodejsFile
+				+ " tsFile=" + tsFile + " - process=" + process);
+		Thread.dumpStack();
+
 		if (out != null) {
 			out.close();
 			out = null;

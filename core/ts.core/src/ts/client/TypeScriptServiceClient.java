@@ -80,6 +80,7 @@ import ts.internal.client.protocol.NavToRequest;
 import ts.internal.client.protocol.NavTreeRequest;
 import ts.internal.client.protocol.OccurrencesRequest;
 import ts.internal.client.protocol.OpenExternalProjectRequest;
+import ts.internal.client.protocol.OpenExternalProjectRequestArgs.ExternalFile;
 import ts.internal.client.protocol.OpenRequest;
 import ts.internal.client.protocol.ProjectInfoRequest;
 import ts.internal.client.protocol.QuickInfoRequest;
@@ -91,7 +92,6 @@ import ts.internal.client.protocol.Response;
 import ts.internal.client.protocol.SemanticDiagnosticsSyncRequest;
 import ts.internal.client.protocol.SignatureHelpRequest;
 import ts.internal.client.protocol.SyntacticDiagnosticsSyncRequest;
-import ts.internal.client.protocol.OpenExternalProjectRequestArgs.ExternalFile;
 import ts.nodejs.INodejsLaunchConfiguration;
 import ts.nodejs.INodejsProcess;
 import ts.nodejs.INodejsProcessListener;
@@ -327,10 +327,9 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 			throws TypeScriptException {
 		execute(new OpenExternalProjectRequest(projectFileName, rootFiles, options), false);
 	}
-	
+
 	@Override
-	public void closeExternalProject(String projectFileName)
-			throws TypeScriptException {
+	public void closeExternalProject(String projectFileName) throws TypeScriptException {
 		execute(new CloseExternalProjectRequest(projectFileName), false);
 	}
 
@@ -669,6 +668,10 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 	}
 
 	private INodejsProcess getProcess() throws TypeScriptException {
+		if (process == null) {
+			throw new RuntimeException("unexpected error: process was stopped/killed before trying to use it again");
+		}
+
 		if (!process.isStarted()) {
 			process.start();
 		}
@@ -815,6 +818,8 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 		try {
 			if (!isDisposed()) {
 				this.dispose = true;
+				System.out.println("dispose client - process=" + process);
+				Thread.dumpStack();
 				if (process != null) {
 					process.kill();
 				}
