@@ -203,8 +203,7 @@ public class NodejsProcess extends AbstractNodejsProcess {
 			// for osx, path of node.js should be setted?
 			if (new File("/usr/local/bin/node").exists()) {
 				commands.add("/usr/local/bin/node");
-			}
-			if (new File("/opt/local/bin/node").exists()) {
+			} else if (new File("/opt/local/bin/node").exists()) {
 				commands.add("/opt/local/bin/node");
 			} else {
 				commands.add("node");
