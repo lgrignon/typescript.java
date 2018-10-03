@@ -359,7 +359,7 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 			tempFileName = FileTempHelper.updateTempFile(newText, seq);
 		}
 		try {
-			execute(new ReloadRequest(fileName, tempFileName, seq), true).get(5000, TimeUnit.MILLISECONDS);
+			execute(new ReloadRequest(fileName, tempFileName, seq), true).get(10000, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
 			if (e instanceof TypeScriptException) {
 				throw (TypeScriptException) e;

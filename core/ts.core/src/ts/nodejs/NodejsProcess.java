@@ -223,13 +223,17 @@ public class NodejsProcess extends AbstractNodejsProcess {
 		return projectDir;
 	}
 
+	public static boolean logProcessStopStack = true;
+
 	/**
 	 * Kill the process.
 	 */
 	public void kill() {
-		System.out.println("kill nodejs process: projectDir=" + getProjectDir() + " nodejsFile=" + nodejsFile
-				+ " tsFile=" + tsFile + " - process=" + process);
-		Thread.dumpStack();
+		if (logProcessStopStack) {
+			System.out.println("kill nodejs process: projectDir=" + getProjectDir() + " nodejsFile=" + nodejsFile
+					+ " tsFile=" + tsFile + " - process=" + process);
+			Thread.dumpStack();
+		}
 
 		if (out != null) {
 			out.close();
