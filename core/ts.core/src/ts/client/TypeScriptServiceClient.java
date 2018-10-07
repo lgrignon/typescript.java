@@ -95,6 +95,7 @@ import ts.internal.client.protocol.SyntacticDiagnosticsSyncRequest;
 import ts.nodejs.INodejsLaunchConfiguration;
 import ts.nodejs.INodejsProcess;
 import ts.nodejs.INodejsProcessListener;
+import ts.nodejs.NodejsProcess;
 import ts.nodejs.NodejsProcessAdapter;
 import ts.nodejs.NodejsProcessManager;
 import ts.repository.TypeScriptRepositoryManager;
@@ -819,7 +820,9 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 			if (!isDisposed()) {
 				this.dispose = true;
 				System.out.println("dispose client - process=" + process);
-				Thread.dumpStack();
+				if (NodejsProcess.logProcessStopStack) {
+					Thread.dumpStack();
+				}
 				if (process != null) {
 					process.kill();
 				}
