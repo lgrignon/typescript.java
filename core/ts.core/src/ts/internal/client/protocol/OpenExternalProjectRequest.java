@@ -5,8 +5,8 @@ import java.util.List;
 import com.google.gson.JsonObject;
 
 import ts.client.CommandNames;
+import ts.client.ExternalFile;
 import ts.cmd.tsc.CompilerOptions;
-import ts.internal.client.protocol.OpenExternalProjectRequestArgs.ExternalFile;
 
 /**
  * Request to open or update external project.

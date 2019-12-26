@@ -80,7 +80,6 @@ import ts.internal.client.protocol.NavToRequest;
 import ts.internal.client.protocol.NavTreeRequest;
 import ts.internal.client.protocol.OccurrencesRequest;
 import ts.internal.client.protocol.OpenExternalProjectRequest;
-import ts.internal.client.protocol.OpenExternalProjectRequestArgs.ExternalFile;
 import ts.internal.client.protocol.OpenRequest;
 import ts.internal.client.protocol.ProjectInfoRequest;
 import ts.internal.client.protocol.QuickInfoRequest;

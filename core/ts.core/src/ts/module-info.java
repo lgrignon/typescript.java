@@ -3,8 +3,11 @@ open module typescript.java.core {
 	requires transitive minimal.json;
 	requires transitive org.osgi.core;
 	requires transitive org.tukaani.xz;
-//	exports com.google.gson.annotations;
-//	exports com.google.gson.reflect;
-//	exports com.google.gson.stream;
 	exports ts;
+	exports ts.client;
+	exports ts.client.diagnostics;
+	exports ts.client.projectinfo;
+	exports ts.cmd.tsc;
+	exports ts.utils;
+	exports ts.nodejs;
 }
