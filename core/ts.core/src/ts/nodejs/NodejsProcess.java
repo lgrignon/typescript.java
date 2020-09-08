@@ -223,7 +223,7 @@ public class NodejsProcess extends AbstractNodejsProcess {
 		return projectDir;
 	}
 
-	public static boolean logProcessStopStack = true;
+	public static boolean logProcessStopStack = false;
 
 	/**
 	 * Kill the process.
