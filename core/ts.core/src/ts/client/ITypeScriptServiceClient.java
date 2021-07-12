@@ -122,6 +122,8 @@ public interface ITypeScriptServiceClient {
 
 	void updateFile(String fileName, String newText) throws TypeScriptException;
 
+	void updateFile(String fileName, String newText, int timeoutInSeconds) throws TypeScriptException;
+
 	/**
 	 * Completion for the given fileName at the given position.
 	 * 
