@@ -353,7 +353,7 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 	 */
 	@Override
 	public void updateFile(String fileName, String newText) throws TypeScriptException {
-	    updateFile(fileName, newText,10);
+	    updateFile(fileName, newText,10,TimeUnit.SECONDS);
     }
 	/**
 	 * Write the buffer of editor content to a temporary file and have the server
@@ -361,17 +361,18 @@ public class TypeScriptServiceClient implements ITypeScriptServiceClient {
 	 * 
 	 * @param fileName
 	 * @param newText
-	 * @param timeoutInSeconds
+	 * @param timeout
+	 * @param timeoutUnit
 	 */
 	@Override
-	public void updateFile(String fileName, String newText, int timeoutInSeconds) throws TypeScriptException {
+	public void updateFile(String fileName, String newText, long timeout, TimeUnit timeoutUnit) throws TypeScriptException {
 		int seq = SequenceHelper.getRequestSeq();
 		String tempFileName = null;
 		if (newText != null) {
 			tempFileName = FileTempHelper.updateTempFile(newText, seq);
 		}
 		try {
-			execute(new ReloadRequest(fileName, tempFileName, seq), true).get(timeoutInSeconds, TimeUnit.SECONDS);
+			execute(new ReloadRequest(fileName, tempFileName, seq), true).get(timeout, timeoutUnit);
 		} catch (Exception e) {
 			if (e instanceof TypeScriptException) {
 				throw (TypeScriptException) e;

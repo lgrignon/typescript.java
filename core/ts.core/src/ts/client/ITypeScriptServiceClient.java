@@ -12,6 +12,7 @@ package ts.client;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 import ts.TypeScriptException;
 import ts.client.codefixes.CodeAction;
@@ -122,7 +123,7 @@ public interface ITypeScriptServiceClient {
 
 	void updateFile(String fileName, String newText) throws TypeScriptException;
 
-	void updateFile(String fileName, String newText, int timeoutInSeconds) throws TypeScriptException;
+	void updateFile(String fileName, String newText, long timeout, TimeUnit timeoutUnit) throws TypeScriptException;
 
 	/**
 	 * Completion for the given fileName at the given position.
